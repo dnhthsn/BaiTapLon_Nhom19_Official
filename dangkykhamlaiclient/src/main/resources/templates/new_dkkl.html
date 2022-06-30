@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Tạo đơn đăng ký khám lại</title>
+	<style>
+		form {
+			background-color: #15172b;
+  			border-radius: 20px;
+  			box-sizing: border-box;
+  			height: 300px;
+  			padding: 20px;
+  			width: 320px;
+		}
+		
+		button:hover {
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+<div align="center">
+<h1>Tạo đơn đăng ký khám lại</h1>
+</br>
+<form action="#" th:action="@{/dkKhamLai}" th:object="${dkkl}" method="post">
+	<input type="text" th:field="*{type}" value="0" hidden>
+	<table border="0" cellpadding="10px">
+		<tr>
+			<td style="color: white;">Số điện thoại:</td>
+			<td><input type="text" th:field="*{sdt}"></td>
+		</tr>
+		<tr>
+			<td style="color: white;">Ngày khám:</td>
+			<td><input type="text" th:field="*{ngayKham}"></td>
+		</tr>
+		<tr>
+			<td style="color: white;">Giờ khám:</td>
+			<td><input type="text" th:field="*{gioKham}"></td>
+		</tr>
+		<tr>
+			<td colspan="2"><button type="submit" style="background-color: green; border-radius: 5px; padding: 5px; margin-left: 85px; color: white">Đăng ký</button></td>
+		</tr>
+	</table>
+
+</form>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Đăng ký khám lại khả thi</title>
+	<style>
+		form {
+			background-color: #15172b;
+  			border-radius: 20px;
+  			box-sizing: border-box;
+  			height: 300px;
+  			padding: 20px;
+  			width: 320px;
+  			margin-top: 10px;
+		}
+		
+		button:hover {
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+<div align="center">
+	<p th:if="${#strings.isEmpty(dkkl1.gioKham)}" style="color: red;">Bác sĩ khám lần trước của bạn đã hết lịch trống</p>
+	<p th:if="${#strings.isEmpty(dkkl2.tenBacSi)}" style="color: red;">Chúng tôi không còn bác sĩ nào trống lịch để khám cho bạn, Xin lỗi vì sự bất tiện</p>
+	<p th:if="${dkkl1.gioKham != '' and dkkl2.tenBacSi != ''}" style="color: red;">Bác sĩ khám lần trước của bạn đã có lịch khám vào giờ bạn đăng ký</br>Bạn có thể chọn một trong các lịch sau</p>
+	<form action="#" th:action="@{/dkKhamLai1}" th:object="${dkkl1}" th:if= "${dkkl1.gioKham != ''}" method="post">
+	<input type="text" th:field="*{type}" value="1" hidden>
+	<input type="text" th:field="*{idBacSi}" th:value="${dkkl1.idBacSi}" hidden>
+	<table border="0" cellpadding="10px">
+		<tr>
+			<td style="color: white;">Số điện thoại:</td>
+			<td><input type="text" th:field="*{sdt}" th:value="${dkkl1.sdt}" readonly></td>
+		</tr>
+		<tr>
+			<td style="color: white;">Ngày khám:</td>
+			<td><input type="text" th:field="*{ngayKham}" th:value="${dkkl1.ngayKham}" readonly></td>
+		</tr>
+		<tr>
+			<td style="color: white;">Giờ khám:</td>
+			<td><input type="text" th:field="*{gioKham}" th:value="${dkkl1.gioKham}" readonly></td>
+		</tr>
+		<tr>
+			<td style="color: white;">Bác sĩ:</td>
+			<td><input type="text" th:field="*{tenBacSi}" th:value="${dkkl1.tenBacSi}" readonly></td>
+		</tr>
+		<tr>
+			<td colspan="2"><button type="submit" style="background-color: green; border-radius: 5px; padding: 5px; margin-left: 85px; color:white">Đăng ký</button></td>
+		</tr>
+	</table>
+
+</form>
+<form action="#" th:action="@{/dkKhamLai2}" th:object="${dkkl2}" th:if= "${dkkl2.tenBacSi != ''}" method="post">
+	<input type="text" th:field="*{type}" value="1" hidden>
+	<input type="text" th:field="*{idBacSi}" th:value="${dkkl2.idBacSi}" hidden>
+	<table border="0" cellpadding="10px">
+		<tr>
+			<td style="color: white;">Số điện thoại:</td>
+			<td><input type="text" th:value="${dkkl2.sdt}" readonly></td>
+		</tr>
+		<tr>
+			<td style="color: white;">Ngày khám:</td>
+			<td><input type="text" th:value="${dkkl2.ngayKham}" readonly></td>
+		</tr>
+		<tr>
+			<td style="color: white;">Giờ khám:</td>
+			<td><input type="text" th:value="${dkkl2.gioKham}" readonly></td>
+		</tr>
+		<tr>
+			<td style="color: white;">Bác sĩ:</td>
+			<td><input type="text" th:value="${dkkl2.tenBacSi}" readonly></td>
+		</tr>
+		<tr>
+			<td colspan="2"><button type="submit" style="background-color: green; border-radius: 5px; padding: 5px; margin-left: 85px; color:white">Đăng ký</button></td>
+		</tr>
+	</table>
+
+</form>
+</div>
+</body>
+
+</html>
